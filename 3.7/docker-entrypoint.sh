@@ -13,7 +13,6 @@ if [ -d /docker-entrypoint-init.d ]; then
 fi
 
 function start() {
-  echo 'Starting SonarQube...'
   set +e
   ${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh start
   tail -f ${SONARQUBE_HOME}/logs/sonar.log
@@ -21,7 +20,7 @@ function start() {
 
 function help() {
   echo "Available options:"
-  echo " start          - Starts the SonarQube server (default)"
+  echo " start          - Starts the server (default)"
   echo " help           - Displays the help"
   echo " [command]      - Execute the specified linux command eg. bash."
 }

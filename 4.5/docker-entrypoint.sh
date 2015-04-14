@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Disbale update center
+sed -i 's|#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
+
 if [ -d /docker-entrypoint-init.d ]; then
   for f in /docker-entrypoint-init.d/*.sh; do
     [ -f "$f" ] && . "$f"
@@ -7,7 +10,6 @@ if [ -d /docker-entrypoint-init.d ]; then
 fi
 
 function start() {
-  echo 'Starting SonarQube...'
   set +e
   ${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh start
   tail -f ${SONARQUBE_HOME}/logs/sonar.log
@@ -15,7 +17,7 @@ function start() {
 
 function help() {
   echo "Available options:"
-  echo " start          - Starts the SonarQube server (default)"
+  echo " start          - Starts the server (default)"
   echo " help           - Displays the help"
   echo " [command]      - Execute the specified linux command eg. bash."
 }

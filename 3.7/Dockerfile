@@ -15,7 +15,7 @@ RUN \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
   apt-get update && \
   echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections && \
-  apt-get -y --no-install-recommends install oracle-java7-installer && \
+  apt-get -y install oracle-java7-installer && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk7-installer && \
   rm -rf ${JAVA_HOME}/db && \
   rm -f ${JAVA_HOME}/src.zip ${JAVA_HOME}/*-src.zip
@@ -25,7 +25,7 @@ ENV SONARQUBE_VERSION 3.7.4
 ENV SONARQUBE_HOME /opt/sonar
 WORKDIR /opt
 RUN \
-  apt-get update && apt-get -y --no-install-recommends install unzip && \
+  apt-get update && apt-get -y install unzip && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
   wget http://dist.sonar.codehaus.org/sonar-${SONARQUBE_VERSION}.zip && \
   unzip sonar-${SONARQUBE_VERSION}.zip && \

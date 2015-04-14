@@ -34,7 +34,8 @@ RUN \
 
 # Upgrade Sonar plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
-WORKDIR ${SONARQUBE_HOME}/extensions/plugins
+RUN mkdir -p ${SONARQUBE_HOME}/extensions/downloads
+WORKDIR ${SONARQUBE_HOME}/extensions/downloads
 RUN \
   rm -f *.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.0/sonar-checkstyle-plugin-2.0.jar && \
