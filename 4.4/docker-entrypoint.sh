@@ -13,7 +13,7 @@ sed -i 's|sonar.jdbc.username=sonar|sonar.jdbc.username:'"${DB_USER}"'|g' ${SONA
 sed -i 's|sonar.jdbc.password=sonar|sonar.jdbc.password:'"${DB_PASS}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
 # Tuning the Web Server
-sed -i 's|#wrapper.java.additional.6=-server|wrapper.java.additional.6=-server|g' ${SONARQUBE_HOME}/conf/wrapper.conf
+sed -i 's|#wrapper.java.additional.7=-server|wrapper.java.additional.7=-server|g' ${SONARQUBE_HOME}/conf/wrapper.conf
 
 # Disbale update center
 sed -i 's|#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties

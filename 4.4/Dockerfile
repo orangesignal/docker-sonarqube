@@ -21,7 +21,7 @@ RUN \
   rm -f ${JAVA_HOME}/src.zip ${JAVA_HOME}/*-src.zip
 
 # Install SonarQube
-ENV SONARQUBE_VERSION 4.2
+ENV SONARQUBE_VERSION 4.4.1
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
@@ -35,11 +35,10 @@ RUN \
 # Upgrade SonarQube plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
 # - http://docs.sonarqube.org/display/SONAR/JaCoCo+Plugin
-RUN mkdir -p ${SONARQUBE_HOME}/extensions/downloads
-WORKDIR ${SONARQUBE_HOME}/extensions/downloads
+WORKDIR ${SONARQUBE_HOME}/extensions/plugins
 RUN \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar && \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-jacoco-plugin/2.2.1/sonar-jacoco-plugin-2.2.1.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-jacoco-plugin/2.3/sonar-jacoco-plugin-2.3.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.5.1/sonar-java-plugin-2.5.1.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-squid-java-plugin/2.3/sonar-squid-java-plugin-2.3.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-surefire-plugin/2.3/sonar-surefire-plugin-2.3.jar
