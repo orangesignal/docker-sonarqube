@@ -10,9 +10,15 @@
 -	[`4.0` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.0/Dockerfile)
 -	[`3.7.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/3.7/Dockerfile)
 
-# ![SonarQube](http://www.sonarqube.org/wp-content/themes/sonarsource.org/images/sonar.png)
+For more information about this image and its history, please see the [`orangesignal/docker-sonarqube` GitHub repo](https://github.com/orangesignal/docker-sonarqube/).
 
-Dockerfile to build a SonarQube container image.
+# What is SonarQube?
+
+[SonarQube](http://www.sonarqube.org/) software (previously called Sonar) is an open source quality management platform, dedicated to continuously analyze and measure technical quality, from project portfolio to method.
+
+> [wikipedia.org/wiki/SonarQube](http://en.wikipedia.org/wiki/SonarQube)
+
+![logo](http://www.sonarqube.org/wp-content/themes/sonarsource.org/images/sonar.png)
 
 # Prerequisites
 
