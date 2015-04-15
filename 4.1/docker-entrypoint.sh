@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Variables
-DB_HOST=$DB_PORT_5432_TCP_ADDR
+DB_HOST=${DB_PORT_5432_TCP_ADDR}
 DB_NAME=${DB_NAME:-sonar}
 DB_USER=${DB_USER:-sonar}
 DB_PASS=${DB_PASS:-sonar}
