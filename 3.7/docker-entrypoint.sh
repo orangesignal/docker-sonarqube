@@ -1,22 +1,22 @@
 #!/bin/bash -e
 
 # Variables
-DB_HOST=$DB_PORT_5432_TCP_ADDR
+DB_HOST=${DB_PORT_5432_TCP_ADDR}
 DB_NAME=${DB_NAME:-sonar}
 DB_USER=${DB_USER:-sonar}
 DB_PASS=${DB_PASS:-sonar}
 
 # Setting the access to the Database
-sed -i 's|sonar.jdbc.url:                            jdbc:h2|#sonar.jdbc.url:                            jdbc:h2|g' ${SONARQUBE_HOME}/conf/sonar.properties
-sed -i 's|#sonar.jdbc.url:                            jdbc:postgresql://localhost/sonar|sonar.jdbc.url:jdbc:postgresql://'"${DB_HOST}"'/'"${DB_NAME}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
-sed -i 's|sonar.jdbc.username:                       sonar|sonar.jdbc.username:'"${DB_USER}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
-sed -i 's|sonar.jdbc.password:                       sonar|sonar.jdbc.password:'"${DB_PASS}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^sonar.jdbc.url:[ ]*jdbc:h2|#sonar.jdbc.url:jdbc:h2|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^#sonar.jdbc.url:[ ]*jdbc:postgresql://localhost/sonar|sonar.jdbc.url:jdbc:postgresql://'"${DB_HOST}"'/'"${DB_NAME}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^sonar.jdbc.username:[ ]*sonar|sonar.jdbc.username:'"${DB_USER}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^sonar.jdbc.password:[ ]*sonar|sonar.jdbc.password:'"${DB_PASS}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
 # Tuning the Web Server
-sed -i 's|#wrapper.java.additional.4=-server|wrapper.java.additional.4=-server|g' ${SONARQUBE_HOME}/conf/wrapper.conf
+sed -i 's|^#wrapper.java.additional.4=-server|wrapper.java.additional.4=-server|g' ${SONARQUBE_HOME}/conf/wrapper.conf
 
 # Disbale update center
-sed -i 's|#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
 if [ -d /docker-entrypoint-init.d ]; then
   for f in /docker-entrypoint-init.d/*.sh; do
