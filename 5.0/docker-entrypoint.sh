@@ -11,6 +11,9 @@ sed -i 's|^#sonar.jdbc.url=jdbc:postgresql://localhost/sonar|sonar.jdbc.url=jdbc
 sed -i 's|^#sonar.jdbc.username=sonar|sonar.jdbc.username='"${DB_USER}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
 sed -i 's|^#sonar.jdbc.password=sonar|sonar.jdbc.password='"${DB_PASS}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
+# Tuning the Web Server
+sed -i 's|^#sonar.web.javaOpts=|sonar.web.javaOpts=-server |g' ${SONARQUBE_HOME}/conf/sonar.properties
+
 # Disbale update center
 sed -i 's|^#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
