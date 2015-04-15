@@ -20,6 +20,28 @@ For more information about this image and its history, please see the [`orangesi
 
 ![logo](http://upload.wikimedia.org/wikipedia/commons/e/e6/Sonarqube-48x200.png)
 
+# How to use this image
+
+## start a sonarqube instance
+
+```bash
+docker run -p 9000:9000 orangesignal/sonarqube
+```
+
+## Environment Variables
+
+The SonarQube image uses several environment variables which are easy to miss. While none of the variables are required, they may significantly aid you in using the image.
+
+### `DB_NAME`
+
+### `DB_PASS`
+
+This environment variable is recommend for you to use the SonarQube image.
+
+### `DB_USER`
+
+This optional environment variable is used in conjunction with `DB_USER` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
+
 # Prerequisites
 
 * [Install Docker](http://docs.docker.com/installation/)
