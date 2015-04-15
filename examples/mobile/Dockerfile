@@ -1,0 +1,52 @@
+#
+# SonarQube example Dockerfile
+#
+
+# Pull base image.
+FROM orangesignal/sonarqube:4.5.4
+
+WORKDIR ${SONARQUBE_HOME}/extensions/plugins
+
+# Add SonarQube plugins
+# - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
+RUN \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-ja-plugin/1.3/sonar-l10n-ja-plugin-1.3.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-branding-plugin/1.0/sonar-branding-plugin-1.0.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-groovy-plugin/1.1/sonar-groovy-plugin-1.1.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-pdfreport-plugin/1.4/sonar-pdfreport-plugin-1.4.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-scm-stats-plugin/0.3.1/sonar-scm-stats-plugin-0.3.1.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-timeline-plugin/1.4/sonar-timeline-plugin-1.4.jar
+
+# Add Deprecated Plugins
+# - http://docs.sonarqube.org/display/SONAR/Deprecated+Plugins
+# - http://docs.sonarqube.org/display/SONAR/Release+4.5+Upgrade+Notes
+RUN \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-taglist-plugin/1.0/sonar-taglist-plugin-1.0.jar
+
+# Build and install third party plugin in Sonar
+RUN \
+  wget -O maven.zip http://www.us.apache.org/dist/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.zip && \
+  unzip maven.zip && \
+  rm -f maven.zip && \
+  mv apache-maven-3.1.1 maven && \
+  wget --no-check-certificate -O sonar-objective-c.zip https://github.com/octo-technology/sonar-objective-c/archive/0.4.0.zip && \
+  unzip sonar-objective-c.zip && \
+  rm -f sonar-objective-c.zip && \
+  mv sonar-objective-c-0.4.0 sonar-objective-c && \
+  maven/bin/mvn -e -f sonar-objective-c/pom.xml clean install -Dmaven.repo.local=maven/.m2 && \
+  rm -f sonar-objective-c/target/*-sources.jar sonar-objective-c/target/*-javadoc.jar && \
+  mv sonar-objective-c/target/*.jar . && \
+  rm -rf sonar-objective-c && \
+  wget --no-check-certificate -O sonar-taglist-objective-c.zip https://github.com/orangesignal/sonar-taglist-objective-c/archive/master.zip && \
+  unzip sonar-taglist-objective-c.zip && \
+  rm -f sonar-taglist-objective-c.zip && \
+  mv sonar-taglist-objective-c-master sonar-taglist-objective-c && \
+  maven/bin/mvn -e -f sonar-taglist-objective-c/pom.xml clean install -Dmaven.repo.local=maven/.m2 && \
+  rm -f sonar-taglist-objective-c/target/*-sources.jar sonar-taglist-objective-c/target/*-javadoc.jar && \
+  mv sonar-taglist-objective-c/target/*.jar . && \
+  rm -rf sonar-taglist-objective-c && \
+  rm -rf maven
+
+COPY docker-entrypoint.sh /docker-entrypoint-init.d/docker-entrypoint.sh
