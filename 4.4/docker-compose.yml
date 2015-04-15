@@ -1,7 +1,7 @@
 postgresql:
   image: postgres:9.1
   ports:
-    - "5432:5432"
+    - 5432:5432
   environment:
     - POSTGRES_DB=sonar
     - POSTGRES_USER=sonar
@@ -12,7 +12,7 @@ sonarqube:
   links:
     - postgresql:db
   ports:
-    - "9000:9000"
+    - 9000:9000
   environment:
     - DB_NAME=sonar
     - DB_USER=sonar
