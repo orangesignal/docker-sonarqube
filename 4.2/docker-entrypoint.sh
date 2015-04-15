@@ -16,7 +16,7 @@ sed -i 's|^sonar.jdbc.password=sonar|sonar.jdbc.password:'"${DB_PASS}"'|g' ${SON
 sed -i 's|^#wrapper.java.additional.6=-server|wrapper.java.additional.6=-server|g' ${SONARQUBE_HOME}/conf/wrapper.conf
 
 # Disbale update center
-sed -i '^s|#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
+sed -i 's|^#sonar.updatecenter.activate=true|sonar.updatecenter.activate=false|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
 if [ -d /docker-entrypoint-init.d ]; then
   for f in /docker-entrypoint-init.d/*.sh; do
