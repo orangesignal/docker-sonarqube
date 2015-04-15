@@ -1,26 +1,26 @@
-data:
+pgdata:
   image: orangesignal/pgdata
   volumes:
     - /var/lib/postgresql/data
   tty: true
 
-db:
+postgresql:
   image: postgres:9.3
   ports:
-    - "5432:5432"
+    - 5432:5432
   volumes_from:
-    - data
+    - pgdata
   environment:
     - POSTGRES_DB=sonar
     - POSTGRES_USER=sonar
     - POSTGRES_PASSWORD=sonar
 
-example:
+sonarqube:
   build: .
   links:
-    - db
+    - postgresql:db
   ports:
-    - "9000:9000"
+    - 9000:9000
   environment:
     - DB_NAME=sonar
     - DB_USER=sonar
