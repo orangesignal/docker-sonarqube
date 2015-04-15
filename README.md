@@ -42,6 +42,22 @@ This environment variable is recommend for you to use the SonarQube image.
 
 This optional environment variable is used in conjunction with `DB_USER` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
 
+### `POSTGRESQL_HOST`
+
+default `$DB_PORT_5432_TCP_ADDR`
+
+### `POSTGRESQL_PORT`
+
+default `$DB_PORT_5432_TCP_PORT`
+
+### `MYSQL_HOST`
+
+default `$DB_PORT_3306_TCP_ADDR`
+
+### `MYSQL_PORT`
+
+default `$DB_PORT_3306_TCP_PORT`
+
 # Prerequisites
 
 * [Install Docker](http://docs.docker.com/installation/)
