@@ -18,7 +18,7 @@ For more information about this image and its history, please see the [`orangesi
 
 > [wikipedia.org/wiki/SonarQube](http://en.wikipedia.org/wiki/SonarQube)
 
-![logo](http://www.sonarqube.org/wp-content/themes/sonarsource.org/images/sonar.png)
+![logo](http://upload.wikimedia.org/wikipedia/commons/e/e6/Sonarqube-48x200.png)
 
 # Prerequisites
 
