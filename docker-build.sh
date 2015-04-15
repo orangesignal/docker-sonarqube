@@ -38,4 +38,6 @@ buildAndPushIfNeed $base_dir/4.1
 buildAndPushIfNeed $base_dir/4.2
 buildAndPushIfNeed $base_dir/4.3
 buildAndPushIfNeed $base_dir/4.4
-buildAndPushIfNeed $base_dir/4.5 latest
+buildAndPushIfNeed $base_dir/4.5
+buildAndPushIfNeed $base_dir/5.0
+buildAndPushIfNeed $base_dir/5.1 latest

@@ -1,6 +1,8 @@
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `4.5.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.5/Dockerfile)
+-	[`latest`, `5.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.1/Dockerfile)
+-	[`5.0.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.0/Dockerfile)
+-	[`4.5.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.5/Dockerfile)
 -	[`4.4.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.4/Dockerfile)
 -	[`4.3.3` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.3/Dockerfile)
 -	[`4.2` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.2/Dockerfile)
@@ -12,19 +14,17 @@
 
 Dockerfile to build a SonarQube container image.
 
-# Dependencies
-
-Before you start, you need to make sure you have the following dependencies installed:
+# Prerequisites
 
 * [Install Docker](http://docs.docker.com/installation/)
 * [Install Docker Compose](http://docs.docker.com/compose/install/)
 
 Now you can verify that the installation is ok with the following commands:
 
-<pre>
+```bash
 docker version
 docker-compose --version
-</pre>
+```
 
 # Installation
 
