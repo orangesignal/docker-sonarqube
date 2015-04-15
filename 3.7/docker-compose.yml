@@ -16,7 +16,7 @@ db:
     - POSTGRES_PASSWORD=sonar
 
 sonarqube:
-  build: .
+  image: orangesignal/sonarqube:3.7.4
   links:
     - db
   ports:
