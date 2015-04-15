@@ -3,11 +3,12 @@
 user=orangesignal
 repo=sonarqube
 images=$(docker images $user/$repo)
+vername='SONARQUBE_VERSION'
 
 function buildAndPushIfNeed() {
   local build_dir=$1
   local latest=$2
-  local build_ver=$(cat $build_dir/Dockerfile | grep "^ENV SONARQUBE_VERSION" | cut -d ' ' -f3)
+  local build_ver=$(cat $build_dir/Dockerfile | grep "^ENV $vername" | cut -d ' ' -f3)
   echo "building $$user/$repo:$build_ver"
 
   # build
@@ -18,7 +19,7 @@ function buildAndPushIfNeed() {
   if test $before_image_id != $after_image_id; then
     # push
     echo "$user/$repo:$build_ver $before_image_id -> $after_image_id"
-    docker push orangesignal/sonarqube:$build_ver
+    docker push $user/$repo:$build_ver
 
     if test "$latest" != ''; then
       docker tag $user/$repo:$build_ver $user/$repo:latest
@@ -34,5 +35,6 @@ base_dir=$(dirname ${BASH_SOURCE:-$0})
 buildAndPushIfNeed $base_dir/3.7
 buildAndPushIfNeed $base_dir/4.0
 buildAndPushIfNeed $base_dir/4.1
+buildAndPushIfNeed $base_dir/4.2
 
 buildAndPushIfNeed $base_dir/4.5 latest
