@@ -7,7 +7,6 @@ DB_PASS=${DB_PASS:-sonar}
 
 POSTGRESQL_HOST=${POSTGRESQL_HOST:-$DB_PORT_5432_TCP_ADDR}
 POSTGRESQL_PORT=${POSTGRESQL_PORT:-$DB_PORT_5432_TCP_PORT}
-
 MYSQL_HOST=${MYSQL_HOST:-$DB_PORT_3306_TCP_ADDR}
 MYSQL_PORT=${MYSQL_PORT:-$DB_PORT_3306_TCP_PORT}
 
@@ -16,7 +15,6 @@ sed -i 's|^sonar.jdbc.username:[ ]*sonar|sonar.jdbc.username:'"${DB_USER}"'|g' $
 sed -i 's|^sonar.jdbc.password:[ ]*sonar|sonar.jdbc.password:'"${DB_PASS}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
 
 sed -i 's|^sonar.jdbc.url:[ ]*jdbc:h2|#sonar.jdbc.url:jdbc:h2|g' ${SONARQUBE_HOME}/conf/sonar.properties
-
 if test "${POSTGRESQL_HOST}" != ''; then
   # PostgreSQL
   sed -i 's|^#sonar.jdbc.url:[ ]*jdbc:postgresql://localhost/sonar|sonar.jdbc.url:jdbc:postgresql://'"${POSTGRESQL_HOST}"':'"${POSTGRESQL_PORT}"'/'"${DB_NAME}"'|g' ${SONARQUBE_HOME}/conf/sonar.properties
