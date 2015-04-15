@@ -1,24 +1,31 @@
 #!/bin/bash -e
 
-images=$(docker images orangesignal/sonarqube)
+user=orangesignal
+repo=sonarqube
+images=$(docker images $user/$repo)
 
 function buildImageAndPushIfNeed() {
-  echo "building orangesignal/sonarqube:$build_ver"
   local build_dir=$1
   local latest=$2
   local build_ver=$(cat $build_dir/Dockerfile | grep "^ENV SONARQUBE_VERSION" | cut -d ' ' -f3)
+  echo "building $$user/$repo:$build_ver"
+
+  # build
   local before_image_id=$(echo $images | grep $build_ver | awk '{print $3}')
-  docker build -t orangesignal/sonarqube:$build_ver $build_dir
+  docker build -t $user/$repo:$build_ver $build_dir
   local after_image_id=$(echo $images | grep $build_ver | awk '{print $3}')
+
   if test $before_image_id != $after_image_id; then
-    echo "orangesignal/sonarqube:$build_ver $before_image_id -> $after_image_id"
+    # push
+    echo "$user/$repo:$build_ver $before_image_id -> $after_image_id"
     docker push orangesignal/sonarqube:$build_ver
+
     if test "$latest" != ''; then
-      docker tag orangesignal/sonarqube:$build_ver orangesignal/sonarqube:latest
-      docker push orangesignal/sonarqube:latest
+      docker tag $user/$repo:$build_ver $user/$repo:latest
+      docker push $user/$repo:latest
     fi
   else
-    echo "orangesignal/sonarqube:$build_ver no change"
+    echo "$user/$repo:$build_ver no change"
   fi
 }
 
