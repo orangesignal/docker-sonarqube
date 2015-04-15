@@ -20,44 +20,6 @@ For more information about this image and its history, please see the [`orangesi
 
 ![logo](http://upload.wikimedia.org/wikipedia/commons/e/e6/Sonarqube-48x200.png)
 
-# How to use this image
-
-## start a sonarqube instance
-
-```bash
-docker run -p 9000:9000 orangesignal/sonarqube
-```
-
-## Environment Variables
-
-The SonarQube image uses several environment variables which are easy to miss. While none of the variables are required, they may significantly aid you in using the image.
-
-### `DB_NAME`
-
-### `DB_PASS`
-
-This environment variable is recommend for you to use the SonarQube image.
-
-### `DB_USER`
-
-This optional environment variable is used in conjunction with `DB_USER` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
-
-### `POSTGRESQL_HOST`
-
-default `$DB_PORT_5432_TCP_ADDR`
-
-### `POSTGRESQL_PORT`
-
-default `$DB_PORT_5432_TCP_PORT`
-
-### `MYSQL_HOST`
-
-default `$DB_PORT_3306_TCP_ADDR`
-
-### `MYSQL_PORT`
-
-default `$DB_PORT_3306_TCP_PORT`
-
 # Prerequisites
 
 * [Install Docker](http://docs.docker.com/installation/)
@@ -90,10 +52,17 @@ docker build --tag="$USER/sonarqube" .
 
 Run the SonarQube with Docker Compose. Docker Compose uses a `docker-compose.yml` file that describes the environment.
 
-```bash
+```bash:PostgreSQL
 git clone https://github.com/orangesignal/docker-sonarqube.git
 cd docker-sonarqube
 docker-compose up
+```
+
+or
+
+
+```bash:H2
+docker run -p 9000:9000 orangesignal/sonarqube
 ```
 
 **NOTE**: Please allow a minute or two for the SonarQube application to start.
@@ -110,3 +79,33 @@ Point your browser to the given URL and login using the default username and pas
 * password: **admin**
 
 You should now have the SonarQube application up and ready for testing. If you want to use this image in production the please read on.
+
+## Environment Variables
+
+The SonarQube image uses several environment variables which are easy to miss. While none of the variables are required, they may significantly aid you in using the image.
+
+### `DB_NAME`
+
+### `DB_USER`
+
+This optional environment variable is used in conjunction with `DB_USER` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
+
+### `DB_PASS`
+
+This environment variable is recommend for you to use the SonarQube image.
+
+### `POSTGRESQL_HOST`
+
+default `$DB_PORT_5432_TCP_ADDR`
+
+### `POSTGRESQL_PORT`
+
+default `$DB_PORT_5432_TCP_PORT`
+
+### `MYSQL_HOST`
+
+default `$DB_PORT_3306_TCP_ADDR`
+
+### `MYSQL_PORT`
+
+default `$DB_PORT_3306_TCP_PORT`
