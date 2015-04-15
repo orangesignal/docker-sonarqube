@@ -21,7 +21,7 @@ RUN \
   rm -f ${JAVA_HOME}/src.zip ${JAVA_HOME}/*-src.zip
 
 # Install SonarQube
-ENV SONARQUBE_VERSION 4.4.1
+ENV SONARQUBE_VERSION 4.3.3
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
