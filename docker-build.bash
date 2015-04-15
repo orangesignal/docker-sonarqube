@@ -18,10 +18,7 @@ function buildAndPushIfNeed() {
   docker push ${user}/${repo}:${build_ver}
 
   if test "${latest}" == 'latest'; then
-    set +e
-    docker rmi -f ${user}/${repo}:latest
-    set -e
-    docker tag ${user}/${repo}:${build_ver} ${user}/${repo}:latest
+    docker tag -f ${user}/${repo}:${build_ver} ${user}/${repo}:latest
     docker push ${user}/${repo}:latest
   fi
 }
