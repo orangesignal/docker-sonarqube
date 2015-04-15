@@ -12,7 +12,7 @@ function buildAndPushIfNeed() {
   echo "building ${user}/${repo}:${build_ver}"
 
   # build
-  docker build -t ${user}/${repo}:${build_ver} $build_dir
+  docker build -t ${user}/${repo}:${build_ver} ${build_dir}
 
   # push
   docker push ${user}/${repo}:${build_ver}
