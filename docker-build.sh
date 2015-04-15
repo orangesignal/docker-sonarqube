@@ -4,7 +4,7 @@ user=orangesignal
 repo=sonarqube
 images=$(docker images $user/$repo)
 
-function buildImageAndPushIfNeed() {
+function buildAndPushIfNeed() {
   local build_dir=$1
   local latest=$2
   local build_ver=$(cat $build_dir/Dockerfile | grep "^ENV SONARQUBE_VERSION" | cut -d ' ' -f3)
@@ -31,8 +31,8 @@ function buildImageAndPushIfNeed() {
 
 base_dir=$(dirname ${BASH_SOURCE:-$0})
 
-buildImageAndPushIfNeed $base_dir/3.7
-buildImageAndPushIfNeed $base_dir/4.0
-buildImageAndPushIfNeed $base_dir/4.1
+buildAndPushIfNeed $base_dir/3.7
+buildAndPushIfNeed $base_dir/4.0
+buildAndPushIfNeed $base_dir/4.1
 
-buildImageAndPushIfNeed $base_dir/4.5 latest
+buildAndPushIfNeed $base_dir/4.5 latest
