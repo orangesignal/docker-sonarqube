@@ -6,6 +6,12 @@
 FROM ubuntu:14.04
 ENV DEBIAN_FRONTEND noninteractive
 
+# Set the locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
@@ -30,7 +36,7 @@ RUN \
   wget http://dist.sonar.codehaus.org/sonar-${SONARQUBE_VERSION}.zip && \
   unzip sonar-${SONARQUBE_VERSION}.zip && \
   rm -f sonar-${SONARQUBE_VERSION}.zip && \
-  ln -s /opt/sonar-${SONARQUBE_VERSION} ${SONARQUBE_HOME}
+  ln -s sonar-${SONARQUBE_VERSION} ${SONARQUBE_HOME}
 
 # Upgrade Sonar plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
