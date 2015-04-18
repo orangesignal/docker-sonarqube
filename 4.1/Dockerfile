@@ -76,8 +76,7 @@ RUN \
 RUN mkdir /docker-entrypoint-init.d
 
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 9000
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["start"]
+CMD ["sonar"]
