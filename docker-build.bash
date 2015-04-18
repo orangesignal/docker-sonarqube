@@ -14,11 +14,11 @@ function buildAndPush() {
   docker build -t ${user}/${repo}:${build_ver} ${build_dir}
 
   # push
-#  docker push ${user}/${repo}:${build_ver}
+  docker push ${user}/${repo}:${build_ver}
 
   if test "${latest}" == 'latest'; then
     docker tag -f ${user}/${repo}:${build_ver} ${user}/${repo}:latest
-#    docker push ${user}/${repo}:latest
+    docker push ${user}/${repo}:latest
   fi
 }
 
