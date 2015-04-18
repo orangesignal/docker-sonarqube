@@ -88,23 +88,19 @@ Point your browser to the given URL and login using the default username and pas
 You should now have the SonarQube application up and ready for testing. If you want to use this image in production the please read on.
 
 ## Environment Variables
-
 The SonarQube image uses several environment variables which are easy to miss. While none of the variables are required, they may significantly aid you in using the image.
 
 ### `SONAR_JDBC_URL`
-
 The embedded database is recommended for demos and tests only. It must be replaced by a database like PostgreSQL, MySQL or Oracle in production environment. Read the [installation guide](http://docs.sonarqube.org/display/SONAR/Installing) to get more details.
 
 Default value is: `jdbc:h2:tcp://localhost:9092/sonar`
 
 ### `SONAR_JDBC_USERNAME`
-
 This optional environment variable is used in conjunction with `SONAR_JDBC_PASSWORD` to set a user and its password.
 If it is not specified, then the default user of `sonar` will be used.
 
 ### `SONAR_JDBC_PASSWORD`
-
 This environment variable is recommend for you to use the SonarQube image. The default user is defined by the `SONAR_JDBC_USERNAME` environment variable.
 
 ## LICENSE
-[![Apache 2 License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat)](LICENSE)
+[![Apache 2 License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat)](https://github.com/orangesignal/docker-sonarqube/blob/master/LICENSE)
