@@ -1,36 +1,39 @@
-pgdata:
+data:
   image: orangesignal/pgdata
+  hostname: data001
   volumes:
     - /var/lib/postgresql/data
   tty: true
 
-postgresql:
+db:
   image: postgres:9.3
-  hostname: pgsql-01
+  hostname: pgsql001
   ports:
     - 5432:5432
   volumes_from:
-    - pgdata
+    - data
   environment:
     - POSTGRES_DB=sonar
     - POSTGRES_USER=sonar
     - POSTGRES_PASSWORD=sonar
 
-sonarqube:
+sonar:
   build: .
-  hostname: sonar-01
+  hostname: sonar001
   links:
-    - postgresql
+    - db
   ports:
     - 9000:9000
   environment:
-    - SONAR_JDBC_URL=jdbc:postgresql://pgsql-01:5432/sonar
+    - SONAR_JDBC_URL=jdbc:postgresql://pgsql001:5432/sonar
     - SONAR_JDBC_USERNAME=sonar
     - SONAR_JDBC_PASSWORD=sonar
 
 web:
   image: nginx
   links:
-    - sonarqube
+    - sonar
   ports:
     - 80:80
+  volumes:
+    - nginx-conf.d:/etc/nginx/conf.d
