@@ -28,7 +28,7 @@ RUN \
 
 # Install SonarQube
 ENV SONARQUBE_VERSION 4.1.2
-ENV SONARQUBE_HOME /opt/sonar
+ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
   apt-get update && apt-get -y --no-install-recommends install unzip && \

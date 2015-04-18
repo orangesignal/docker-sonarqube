@@ -84,28 +84,12 @@ You should now have the SonarQube application up and ready for testing. If you w
 
 The SonarQube image uses several environment variables which are easy to miss. While none of the variables are required, they may significantly aid you in using the image.
 
-### `DB_NAME`
+### `SONAR_JDBC_URL`
 
-### `DB_USER`
+### `SONAR_JDBC_USERNAME`
 
-This optional environment variable is used in conjunction with `DB_USER` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
+This optional environment variable is used in conjunction with `SONAR_JDBC_USERNAME` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
 
-### `DB_PASS`
+### `SONAR_JDBC_PASSWORD`
 
 This environment variable is recommend for you to use the SonarQube image.
-
-### `POSTGRESQL_HOST`
-
-default `$DB_PORT_5432_TCP_ADDR`
-
-### `POSTGRESQL_PORT`
-
-default `$DB_PORT_5432_TCP_PORT`
-
-### `MYSQL_HOST`
-
-default `$DB_PORT_3306_TCP_ADDR`
-
-### `MYSQL_PORT`
-
-default `$DB_PORT_3306_TCP_PORT`

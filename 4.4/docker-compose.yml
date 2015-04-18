@@ -1,5 +1,6 @@
 postgresql:
   image: postgres:9.1
+  hostname: pgsql-01
   ports:
     - 5432:5432
   environment:
@@ -9,11 +10,12 @@ postgresql:
 
 sonarqube:
   image: orangesignal/sonarqube:4.4.1
+  hostname: sonar-01
   links:
-    - postgresql:db
+    - postgresql
   ports:
     - 9000:9000
   environment:
-    - DB_NAME=sonar
-    - DB_USER=sonar
-    - DB_PASS=sonar
+    - SONAR_JDBC_URL=jdbc:postgresql://pgsql-01:5432/sonar
+    - SONAR_JDBC_USERNAME=sonar
+    - SONAR_JDBC_PASSWORD=sonar
