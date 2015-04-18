@@ -105,7 +105,7 @@ The SonarQube image uses several environment variables which are easy to miss. W
 
 ### `SONAR_JDBC_URL`
 
-The embedded database is recommended for demos and tests only. It must be replaced by a database like MySql, Postgresql or Oracle in production environment. Read the [installation guide](http://docs.sonarqube.org/display/SONAR/Installing) to get more details.
+The embedded database is recommended for demos and tests only. It must be replaced by a database like PostgreSQL, MySQL or Oracle in production environment. Read the [installation guide](http://docs.sonarqube.org/display/SONAR/Installing) to get more details.
 
 Default value is: `jdbc:h2:tcp://localhost:9092/sonar`
 
