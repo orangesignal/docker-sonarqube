@@ -21,10 +21,30 @@ RUN \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
   apt-get update && \
   echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections && \
-  apt-get -y install oracle-java7-installer && \
-  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk7-installer && \
-  rm -rf ${JAVA_HOME}/db && \
-  rm -f ${JAVA_HOME}/src.zip ${JAVA_HOME}/*-src.zip
+  apt-get -y --no-install-recommends install oracle-java7-installer && \
+  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk7-installer \
+    ${JAVA_HOME}/src.zip \
+    ${JAVA_HOME}/*-src.zip \
+    ${JAVA_HOME}/db \
+    ${JAVA_HOME}/lib/missioncontrol \
+    ${JAVA_HOME}/lib/visualvm \
+    ${JAVA_HOME}/lib/*javafx* \
+    ${JAVA_HOME}/jre/lib/plugin.jar \
+    ${JAVA_HOME}/jre/lib/ext/jfxrt.jar \
+    ${JAVA_HOME}/jre/bin/javaws \
+    ${JAVA_HOME}/jre/lib/javaws.jar \
+    ${JAVA_HOME}/jre/lib/desktop \
+    ${JAVA_HOME}/jre/plugin \
+    ${JAVA_HOME}/jre/lib/deploy* \
+    ${JAVA_HOME}/jre/lib/*javafx* \
+    ${JAVA_HOME}/jre/lib/*jfx* \
+    ${JAVA_HOME}/jre/lib/amd64/libdecora_sse.so \
+    ${JAVA_HOME}/jre/lib/amd64/libprism_*.so \
+    ${JAVA_HOME}/jre/lib/amd64/libfxplugins.so \
+    ${JAVA_HOME}/jre/lib/amd64/libglass.so \
+    ${JAVA_HOME}/jre/lib/amd64/libgstreamer-lite.so \
+    ${JAVA_HOME}/jre/lib/amd64/libjavafx*.so \
+    ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
 
 # Install SonarQube
 ENV SONARQUBE_VERSION 3.7.4

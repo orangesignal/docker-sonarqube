@@ -103,4 +103,4 @@ If it is not specified, then the default user of `sonar` will be used.
 This environment variable is recommend for you to use the SonarQube image. The default user is defined by the `SONAR_JDBC_USERNAME` environment variable.
 
 ## LICENSE
-[![Apache 2 License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat)](https://github.com/orangesignal/docker-sonarqube/blob/master/LICENSE)
+[![Apache 2 License](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat)](LICENSE)
