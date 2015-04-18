@@ -36,23 +36,7 @@ docker version
 docker-compose --version
 ```
 
-## Installation
-
-Pull the image from the docker index. This is the recommended method of installation as it is easier to update image in the future. These builds are performed by the Trusted Build service.
-
-```bash
-docker pull orangesignal/sonarqube
-```
-
-Alternately you can build the image yourself.
-
-```bash
-git clone https://github.com/orangesignal/docker-sonarqube.git
-cd docker-sonarqube
-docker build --tag="$USER/sonarqube" .
-```
-
-## Quick Start
+## How to use
 
 ```bash:H2
 docker run -p 9000:9000 orangesignal/sonarqube
