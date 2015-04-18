@@ -50,9 +50,13 @@ docker build --tag="$USER/sonarqube" .
 
 # Quick Start
 
+```bash:H2
+docker run -p 9000:9000 orangesignal/sonarqube
+```
+
 Run the SonarQube with Docker Compose. Docker Compose uses a `docker-compose.yml` file that describes the environment.
 
-```bash:PostgreSQL
+```bash
 git clone https://github.com/orangesignal/docker-sonarqube.git
 cd docker-sonarqube
 docker-compose up
@@ -60,9 +64,24 @@ docker-compose up
 
 or
 
-
-```bash:H2
-docker run -p 9000:9000 orangesignal/sonarqube
+```bash
+docker run -d \
+  --name=pgsql-01 \
+  --hostname=pgsql-01 \
+  -p 5432:5432 \
+  -e POSTGRES_DB=sonar \
+  -e POSTGRES_USER=sonar \
+  -e POSTGRES_PASSWORD=sonar \
+  postgres:9
+docker run \
+  --name=sonar-01 \
+  --hostname=sonar-01 \
+  --link=pgsql-01:pgsql-01 \
+  -p 9000:9000 \
+  -e SONAR_JDBC_URL=jdbc:postgresql://pgsql-01:5432/sonar \
+  -e SONAR_JDBC_USERNAME=sonar \
+  -e SONAR_JDBC_PASSWORD=sonar \
+  orangesignal/sonarqube 
 ```
 
 **NOTE**: Please allow a minute or two for the SonarQube application to start.
@@ -86,10 +105,15 @@ The SonarQube image uses several environment variables which are easy to miss. W
 
 ### `SONAR_JDBC_URL`
 
+The embedded database is recommended for demos and tests only. It must be replaced by a database like MySql, Postgresql or Oracle in production environment. Read the [installation guide](http://docs.sonarqube.org/display/SONAR/Installing) to get more details.
+
+Default value is: `jdbc:h2:tcp://localhost:9092/sonar`
+
 ### `SONAR_JDBC_USERNAME`
 
-This optional environment variable is used in conjunction with `SONAR_JDBC_USERNAME` to set a user and its password. If it is not specified, then the default user of `sonar` will be used.
+This optional environment variable is used in conjunction with `SONAR_JDBC_PASSWORD` to set a user and its password.
+If it is not specified, then the default user of `sonar` will be used.
 
 ### `SONAR_JDBC_PASSWORD`
 
-This environment variable is recommend for you to use the SonarQube image.
+This environment variable is recommend for you to use the SonarQube image. The default user is defined by the `SONAR_JDBC_USERNAME` environment variable.
