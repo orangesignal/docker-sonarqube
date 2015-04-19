@@ -26,7 +26,11 @@ RUN \
     oracle-java7-installer \
     unzip \
     wget && \
-  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk7-installer \
+  rm -rf \
+    /var/lib/apt/lists/* \
+    /var/cache/apt/archives/* \
+    /var/cache/debconf/*-old \
+    /var/cache/oracle-jdk7-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \
     ${JAVA_HOME}/db \

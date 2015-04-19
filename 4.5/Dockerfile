@@ -15,15 +15,22 @@ ENV LC_ALL en_US.UTF-8
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-# Install Java.
+# Install Deps
 # - http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html
 RUN \
   echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' | tee /etc/apt/sources.list.d/webupd8team-java.list && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
   apt-get update && \
   echo 'oracle-java8-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections && \
-  apt-get -y --no-install-recommends install oracle-java8-installer && \
-  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk8-installer \
+  apt-get -y --no-install-recommends install \
+    oracle-java8-installer \
+    unzip \
+    wget && \
+  rm -rf \
+    /var/lib/apt/lists/* \
+    /var/cache/apt/archives/* \
+    /var/cache/debconf/*-old \
+    /var/cache/oracle-jdk8-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \
     ${JAVA_HOME}/db \
@@ -52,8 +59,6 @@ ENV SONARQUBE_VERSION 4.5.4
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
-  apt-get update && apt-get -y --no-install-recommends install unzip && \
-  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
   wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip && \
   unzip sonarqube-${SONARQUBE_VERSION}.zip && \
   rm -f sonarqube-${SONARQUBE_VERSION}.zip && \
