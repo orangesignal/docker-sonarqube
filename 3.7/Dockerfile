@@ -15,13 +15,17 @@ ENV LC_ALL en_US.UTF-8
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
-# Install Java.
+# Install Deps
+# - http://www.oracle.com/technetwork/jp/java/javase/jdk-7-readme-429198.html
 RUN \
   echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' | tee /etc/apt/sources.list.d/webupd8team-java.list && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
   apt-get update && \
   echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections && \
-  apt-get -y --no-install-recommends install oracle-java7-installer && \
+  apt-get -y --no-install-recommends install \
+    oracle-java7-installer \
+    unzip \
+    wget && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/oracle-jdk7-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \
@@ -38,21 +42,21 @@ RUN \
     ${JAVA_HOME}/jre/lib/deploy* \
     ${JAVA_HOME}/jre/lib/*javafx* \
     ${JAVA_HOME}/jre/lib/*jfx* \
-    ${JAVA_HOME}/jre/lib/amd64/libdecora_sse.so \
-    ${JAVA_HOME}/jre/lib/amd64/libprism_*.so \
-    ${JAVA_HOME}/jre/lib/amd64/libfxplugins.so \
+    ${JAVA_HOME}/jre/lib/security/javafx.policy \
+    ${JAVA_HOME}/jre/lib/amd64/fxavcodecplugin-*.so \
+    ${JAVA_HOME}/jre/lib/amd64/fxplugins.so \
     ${JAVA_HOME}/jre/lib/amd64/libglass.so \
+    ${JAVA_HOME}/jre/lib/amd64/libgstplugins-lite.so \
     ${JAVA_HOME}/jre/lib/amd64/libgstreamer-lite.so \
     ${JAVA_HOME}/jre/lib/amd64/libjavafx*.so \
-    ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
+    ${JAVA_HOME}/jre/lib/amd64/libjfx*.so \
+    ${JAVA_HOME}/jre/lib/amd64/libprism-es2.so
 
 # Install SonarQube
 ENV SONARQUBE_VERSION 3.7.4
 ENV SONARQUBE_HOME /opt/sonar
 WORKDIR /opt
 RUN \
-  apt-get update && apt-get -y install unzip && \
-  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
   wget http://dist.sonar.codehaus.org/sonar-${SONARQUBE_VERSION}.zip && \
   unzip sonar-${SONARQUBE_VERSION}.zip && \
   rm -f sonar-${SONARQUBE_VERSION}.zip && \
