@@ -13,4 +13,5 @@
 git clone https://github.com/orangesignal/docker-sonarqube.git
 cd docker-sonarqube/example
 docker-compose up
+open http://192.168.59.103/sonarqube/
 ```
