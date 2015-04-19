@@ -18,19 +18,12 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 # Install Deps
 # - http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html
 RUN \
-  echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' | tee /etc/apt/sources.list.d/webupd8team-java.list && \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
-  apt-get update && \
-  echo 'oracle-java8-installer shared/accepted-oracle-license-v1-1 select true' | debconf-set-selections && \
-  apt-get -y --no-install-recommends install \
-    oracle-java8-installer \
-    unzip \
-    wget && \
-  rm -rf \
-    /var/lib/apt/lists/* \
-    /var/cache/apt/archives/* \
-    /var/cache/debconf/*-old \
-    /var/cache/oracle-jdk8-installer \
+  echo deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main | tee /etc/apt/sources.list.d/webupd8team-java.list &&\
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 &&\
+  apt-get update &&\
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections &&\
+  apt-get -y --no-install-recommends install oracle-java8-installer unzip &&\
+  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/debconf/*-old /var/cache/oracle-jdk*-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \
     ${JAVA_HOME}/db \
@@ -59,16 +52,16 @@ ENV SONARQUBE_VERSION 5.0.1
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
-  wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip && \
-  unzip sonarqube-${SONARQUBE_VERSION}.zip && \
-  rm -f sonarqube-${SONARQUBE_VERSION}.zip && \
+  wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip &&\
+  unzip sonarqube-${SONARQUBE_VERSION}.zip &&\
+  rm    sonarqube-${SONARQUBE_VERSION}.zip &&\
   ln -s sonarqube-${SONARQUBE_VERSION} ${SONARQUBE_HOME}
 
 # Upgrade SonarQube plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
 WORKDIR ${SONARQUBE_HOME}/extensions/plugins
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar &&\
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar
 
 # Add a directory to process setup scripts for the container
