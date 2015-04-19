@@ -16,6 +16,7 @@ ENV LC_ALL en_US.UTF-8
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Install Java.
+# - http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html
 RUN \
   echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' | tee /etc/apt/sources.list.d/webupd8team-java.list && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
