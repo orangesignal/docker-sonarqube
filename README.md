@@ -50,28 +50,6 @@ cd docker-sonarqube
 docker-compose up
 ```
 
-or
-
-```bash
-docker run -d \
-  --name=pgsql-01 \
-  --hostname=pgsql-01 \
-  -p 5432:5432 \
-  -e POSTGRES_DB=sonar \
-  -e POSTGRES_USER=sonar \
-  -e POSTGRES_PASSWORD=sonar \
-  postgres:9
-docker run \
-  --name=sonar-01 \
-  --hostname=sonar-01 \
-  --link=pgsql-01:pgsql-01 \
-  -p 9000:9000 \
-  -e SONAR_JDBC_URL=jdbc:postgresql://pgsql-01:5432/sonar \
-  -e SONAR_JDBC_USERNAME=sonar \
-  -e SONAR_JDBC_PASSWORD=sonar \
-  orangesignal/sonarqube 
-```
-
 **NOTE**: Please allow a minute or two for the SonarQube application to start.
 
 On another console run:
