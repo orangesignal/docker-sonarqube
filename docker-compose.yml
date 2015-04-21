@@ -1,4 +1,4 @@
-postgresql:
+db:
   image: postgres:9
   hostname: pgsql-01
   ports:
@@ -8,11 +8,11 @@ postgresql:
     - POSTGRES_USER=sonar
     - POSTGRES_PASSWORD=sonar
 
-sonarqube:
-  image: orangesignal/sonarqube:latest
+sonar:
+  image: orangesignal/sonar:latest
   hostname: sonar-01
   links:
-    - postgresql
+    - db
   ports:
     - 9000:9000
   environment:

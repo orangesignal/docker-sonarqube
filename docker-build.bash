@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 user='orangesignal'
-repo='sonarqube'
+repo='sonar'
 vername='SONARQUBE_VERSION'
 
 function build() {

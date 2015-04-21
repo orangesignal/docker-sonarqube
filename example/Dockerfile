@@ -3,7 +3,7 @@
 #
 
 # Pull base image.
-FROM orangesignal/sonarqube:4.5.4
+FROM orangesignal/sonar:4.5.4
 
 WORKDIR ${SONARQUBE_HOME}/extensions/plugins
 
