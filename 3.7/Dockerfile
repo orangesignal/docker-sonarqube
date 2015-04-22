@@ -57,7 +57,14 @@ RUN \
   wget http://dist.sonar.codehaus.org/sonar-${SONARQUBE_VERSION}.zip &&\
   unzip sonar-${SONARQUBE_VERSION}.zip &&\
   rm    sonar-${SONARQUBE_VERSION}.zip &&\
-  ln -s sonar-${SONARQUBE_VERSION} ${SONARQUBE_HOME}
+  ln -s sonar-${SONARQUBE_VERSION} ${SONARQUBE_HOME} &&\
+  # Remove unnecessary files
+  rm -r \
+    ${SONARQUBE_HOME}/bin/linux-ppc-64 \
+    ${SONARQUBE_HOME}/bin/linux-x86-32 \
+    ${SONARQUBE_HOME}/bin/macosx-* \
+    ${SONARQUBE_HOME}/bin/solaris-* \
+    ${SONARQUBE_HOME}/bin/windows-*
 
 # Upgrade Sonar plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix

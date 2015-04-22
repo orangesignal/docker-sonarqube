@@ -13,16 +13,16 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
 # Install Deps
-# - http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html
+# - http://www.oracle.com/technetwork/jp/java/javase/jdk-7-readme-429198.html
 RUN \
   echo deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main | tee /etc/apt/sources.list.d/webupd8team-java.list &&\
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 &&\
   apt-get update &&\
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections &&\
-  apt-get -y --no-install-recommends install oracle-java8-installer unzip &&\
+  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections &&\
+  apt-get -y --no-install-recommends install oracle-java7-installer unzip &&\
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/debconf/*-old /var/cache/oracle-jdk*-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \
@@ -39,23 +39,25 @@ RUN \
     ${JAVA_HOME}/jre/lib/deploy* \
     ${JAVA_HOME}/jre/lib/*javafx* \
     ${JAVA_HOME}/jre/lib/*jfx* \
-    ${JAVA_HOME}/jre/lib/amd64/libdecora_sse.so \
-    ${JAVA_HOME}/jre/lib/amd64/libprism_*.so \
-    ${JAVA_HOME}/jre/lib/amd64/libfxplugins.so \
+    ${JAVA_HOME}/jre/lib/security/javafx.policy \
+    ${JAVA_HOME}/jre/lib/amd64/fxavcodecplugin-*.so \
+    ${JAVA_HOME}/jre/lib/amd64/fxplugins.so \
     ${JAVA_HOME}/jre/lib/amd64/libglass.so \
+    ${JAVA_HOME}/jre/lib/amd64/libgstplugins-lite.so \
     ${JAVA_HOME}/jre/lib/amd64/libgstreamer-lite.so \
     ${JAVA_HOME}/jre/lib/amd64/libjavafx*.so \
-    ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
+    ${JAVA_HOME}/jre/lib/amd64/libjfx*.so \
+    ${JAVA_HOME}/jre/lib/amd64/libprism-es2.so
 
 # Install SonarQube
-ENV SONARQUBE_VERSION 4.4.1
-ENV SONARQUBE_HOME /opt/sonarqube
+ENV SONARQUBE_VERSION 3.6.3
+ENV SONARQUBE_HOME /opt/sonar
 WORKDIR /opt
 RUN \
-  wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip &&\
-  unzip sonarqube-${SONARQUBE_VERSION}.zip &&\
-  rm    sonarqube-${SONARQUBE_VERSION}.zip &&\
-  ln -s sonarqube-${SONARQUBE_VERSION} ${SONARQUBE_HOME} &&\
+  wget http://dist.sonar.codehaus.org/sonar-${SONARQUBE_VERSION}.zip &&\
+  unzip sonar-${SONARQUBE_VERSION}.zip &&\
+  rm    sonar-${SONARQUBE_VERSION}.zip &&\
+  ln -s sonar-${SONARQUBE_VERSION} ${SONARQUBE_HOME} &&\
   # Remove unnecessary files
   rm -r \
     ${SONARQUBE_HOME}/bin/linux-ppc-64 \
@@ -64,17 +66,18 @@ RUN \
     ${SONARQUBE_HOME}/bin/solaris-* \
     ${SONARQUBE_HOME}/bin/windows-*
 
-# Upgrade SonarQube plugins
+# Upgrade Sonar plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
-# - http://docs.sonarqube.org/display/SONAR/JaCoCo+Plugin
-RUN mkdir ${SONARQUBE_HOME}/extensions/downloads
 WORKDIR ${SONARQUBE_HOME}/extensions/downloads
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar &&\
-  rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-jacoco-plugin-*.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.5.1/sonar-java-plugin-2.5.1.jar &&\
-  rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-squid-java-plugin-*.jar &&\
-  rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-surefire-plugin-*.jar
+  rm *.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.0/sonar-checkstyle-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/2.0/sonar-findbugs-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-jacoco-plugin/2.0/sonar-jacoco-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.0/sonar-java-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.0/sonar-pmd-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-squid-java-plugin/2.0/sonar-squid-java-plugin-2.0.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-surefire-plugin/2.0/sonar-surefire-plugin-2.0.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d

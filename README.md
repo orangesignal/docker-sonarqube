@@ -13,6 +13,7 @@ Ubuntu based SonarQube docker image
 - [`4.1.2`](https://github.com/orangesignal/docker-sonarqube/blob/master/4.1/Dockerfile)
 - [`4.0`](https://github.com/orangesignal/docker-sonarqube/blob/master/4.0/Dockerfile)
 - [`3.7.4`](https://github.com/orangesignal/docker-sonarqube/blob/master/3.7/Dockerfile)
+- [`3.6.3`](https://github.com/orangesignal/docker-sonarqube/blob/master/3.6/Dockerfile)
 
 For more information about this image and its history, please see the [`orangesignal/docker-sonarqube` GitHub repo](https://github.com/orangesignal/docker-sonarqube/).
 
