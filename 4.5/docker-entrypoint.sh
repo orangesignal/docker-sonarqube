@@ -19,9 +19,14 @@ if [ "$1" = 'sonar' ]; then
     fi
   fi
 
+  trap '${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh stop; exit 0' TERM
+
   set +e
   ${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh start
-  tail -f ${SONARQUBE_HOME}/logs/sonar.log
+
+  # Waiting the signal
+  while true; do sleep 1; done
+
 else
   exec "$@"
 fi
