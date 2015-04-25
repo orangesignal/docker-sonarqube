@@ -3,11 +3,14 @@
 #
 
 # Pull base image.
-FROM ubuntu:14.04
+FROM debian:wheezy
 ENV DEBIAN_FRONTEND noninteractive
 
 # Set the locale
-RUN locale-gen en_US.UTF-8
+RUN \
+  apt-get update && apt-get install -y --no-install-recommends locales &&\
+  rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/debconf/*-old &&\
+  localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -22,7 +25,7 @@ RUN \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 &&\
   apt-get update &&\
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections &&\
-  apt-get -y --no-install-recommends install oracle-java7-installer unzip &&\
+  apt-get -y --no-install-recommends install oracle-java7-installer unzip procps &&\
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /var/cache/debconf/*-old /var/cache/oracle-jdk*-installer \
     ${JAVA_HOME}/src.zip \
     ${JAVA_HOME}/*-src.zip \

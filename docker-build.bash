@@ -14,16 +14,17 @@ function build() {
   docker build -t ${user}/${repo}:${build_ver} ${build_dir}
 
   # push
-  docker push ${user}/${repo}:${build_ver}
+#  docker push ${user}/${repo}:${build_ver}
 
   if test "${latest}" == 'latest'; then
     docker tag -f ${user}/${repo}:${build_ver} ${user}/${repo}:latest
-    docker push ${user}/${repo}:latest
+#    docker push ${user}/${repo}:latest
   fi
 }
 
 base_dir=$(dirname ${BASH_SOURCE:-$0})
 
+build ${base_dir}/3.6
 build ${base_dir}/3.7
 build ${base_dir}/4.0
 build ${base_dir}/4.1

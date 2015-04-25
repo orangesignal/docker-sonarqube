@@ -1,6 +1,6 @@
 # orangesignal/sonar [![](https://img.shields.io/badge/container-ready-green.svg?style=flat)](https://registry.hub.docker.com/u/orangesignal/sonar/)
 
-Ubuntu based SonarQube docker image
+SonarQube small docker images
 
 ## Supported tags
 
