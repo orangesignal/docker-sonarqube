@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
 if [ "$1" = 'sonar' ]; then
-  if [ -z "$(ls -A "${SONARQUBE_HOME}/logs")" ]; then
+  if [ ! -e ${SONARQUBE_HOME}/conf/sonar.properties.default ]; then
+    cp ${SONARQUBE_HOME}/conf/sonar.properties ${SONARQUBE_HOME}/conf/sonar.properties.default
+
     # Variables
     SONAR_JDBC_URL=${SONAR_JDBC_URL:-jdbc:h2:tcp://localhost:9092/sonar}
     SONAR_JDBC_USERNAME=${SONAR_JDBC_USERNAME:-sonar}
@@ -19,9 +21,7 @@ if [ "$1" = 'sonar' ]; then
     fi
   fi
 
-  set +e
-  ${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh start
-  tail -f ${SONARQUBE_HOME}/logs/sonar.log
-else
-  exec "$@"
+  exec ${SONARQUBE_HOME}/bin/linux-x86-64/sonar.sh console
 fi
+
+exec "$@"

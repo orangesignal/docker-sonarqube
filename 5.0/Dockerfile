@@ -75,6 +75,9 @@ RUN mkdir /docker-entrypoint-init.d
 
 COPY docker-entrypoint.sh /
 
+# forward sonar logs to docker log collector
+RUN ln -sf /dev/stdout ${SONARQUBE_HOME}/logs/sonar.log
+
 EXPOSE 9000
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["sonar"]
