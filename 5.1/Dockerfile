@@ -68,9 +68,13 @@ RUN \
 
 # Upgrade SonarQube plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
-WORKDIR ${SONARQUBE_HOME}/extensions/plugins
+# - http://www.sonarsource.com/category/plugins-news/
+WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar
+  rm sonar-java-plugin-*.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar &&\
+  rm sonar-scm-svn-plugin-*.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-scm-svn-plugin/1.1/sonar-scm-svn-plugin-1.1.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d
