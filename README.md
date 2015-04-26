@@ -40,7 +40,7 @@ docker-compose --version
 ## How to use
 
 ```bash:H2
-docker run -p 9000:9000 orangesignal/sonarqube
+docker run -p 9000:9000 orangesignal/sonar
 ```
 
 Run the SonarQube with Docker Compose. Docker Compose uses a `docker-compose.yml` file that describes the environment.
