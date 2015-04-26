@@ -68,8 +68,9 @@ RUN \
 
 # Upgrade SonarQube plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
-WORKDIR ${SONARQUBE_HOME}/extensions/plugins
+WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
+  rm *.jar &&\
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar &&\
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar
 
