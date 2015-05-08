@@ -11,7 +11,7 @@ WORKDIR ${SONARQUBE_HOME}/extensions/plugins
 # - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
 # - http://www.sonarsource.com/category/plugins-news/
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.0/sonar-android-plugin-1.0.jar && \
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/android/sonar-android-plugin/1.1/sonar-android-plugin-1.1.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.3/sonar-checkstyle-plugin-2.3.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.3/sonar-pmd-plugin-2.3.jar && \
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-ja-plugin/1.3/sonar-l10n-ja-plugin-1.3.jar && \
