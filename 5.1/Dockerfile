@@ -72,7 +72,7 @@ RUN \
 WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
   rm sonar-java-plugin-*.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.1/sonar-java-plugin-3.1.jar &&\
+  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.2/sonar-java-plugin-3.2.jar &&\
   rm sonar-scm-svn-plugin-*.jar &&\
   wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-scm-svn-plugin/1.1/sonar-scm-svn-plugin-1.1.jar
 
