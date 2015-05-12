@@ -4,16 +4,16 @@ SonarQube small docker images
 
 ## Supported tags
 
-- [`latest`, `5.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.1/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:latest)
-- [`5.0.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.0/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:5.0.1)
-- [`4.5.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.5/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.5.4)
-- [`4.4.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.4/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.4.1)
-- [`4.3.3` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.3/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.3.3)
-- [`4.2` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.2/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.2)
-- [`4.1.2` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.1/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.1.2)
-- [`4.0` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.0/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.0)
-- [`3.7.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/3.7/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:3.7.4)
-- [`3.6.3` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/3.6/Dockerfile) - [*ImageLayers*](https://imagelayers.io/?images=orangesignal%2Fsonar:3.6.3)
+- [`latest`, `5.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.1/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:latest)
+- [`5.0.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/5.0/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:5.0.1)
+- [`4.5.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.5/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.5.4)
+- [`4.4.1` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.4/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.4.1)
+- [`4.3.3` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.3/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.3.3)
+- [`4.2` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.2/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.2)
+- [`4.1.2` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.1/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.1.2)
+- [`4.0` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/4.0/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:4.0)
+- [`3.7.4` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/3.7/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:3.7.4)
+- [`3.6.3` (*Dockerfile*)](https://github.com/orangesignal/docker-sonarqube/blob/master/3.6/Dockerfile) - [*image size*](https://imagelayers.io/?images=orangesignal%2Fsonar:3.6.3)
 
 For more information about this image and its history, please see the [`orangesignal/docker-sonarqube` GitHub repo](https://github.com/orangesignal/docker-sonarqube/).
 
