@@ -67,13 +67,13 @@ RUN \
     ${SONARQUBE_HOME}/bin/windows-*
 
 # Upgrade SonarQube plugins
-# - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
+# - http://docs.sonarqube.org/display/PLUG/Plugin+Version+Matrix
 # - http://www.sonarsource.com/category/plugins-news/
 WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
   rm *.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.2/sonar-java-plugin-3.2.jar
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.2/sonar-findbugs-plugin-3.2.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.2/sonar-java-plugin-3.2.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d

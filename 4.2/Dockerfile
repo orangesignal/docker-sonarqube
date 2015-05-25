@@ -70,14 +70,14 @@ RUN \
     ${SONARQUBE_HOME}/bin/windows-*
 
 # Upgrade SonarQube plugins
-# - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
+# - http://docs.sonarqube.org/display/PLUG/Plugin+Version+Matrix
 # - http://docs.sonarqube.org/display/SONAR/JaCoCo+Plugin
 RUN mkdir ${SONARQUBE_HOME}/extensions/downloads
 WORKDIR ${SONARQUBE_HOME}/extensions/downloads
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/3.1/sonar-findbugs-plugin-3.1.jar &&\
   rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-jacoco-plugin-*.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.5.1/sonar-java-plugin-2.5.1.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.5.1/sonar-java-plugin-2.5.1.jar &&\
   rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-squid-java-plugin-*.jar &&\
   rm ${SONARQUBE_HOME}/lib/bundled-plugins/sonar-surefire-plugin-*.jar
 

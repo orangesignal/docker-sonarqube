@@ -70,17 +70,17 @@ RUN \
     ${SONARQUBE_HOME}/bin/windows-*
 
 # Upgrade Sonar plugins
-# - http://docs.sonarqube.org/display/SONAR/Plugin+version+matrix
+# - http://docs.sonarqube.org/display/PLUG/Plugin+Version+Matrix
 RUN mkdir ${SONARQUBE_HOME}/extensions/downloads
 WORKDIR ${SONARQUBE_HOME}/extensions/downloads
 RUN \
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.0/sonar-checkstyle-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/2.0/sonar-findbugs-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-jacoco-plugin/2.0/sonar-jacoco-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.0/sonar-java-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.0/sonar-pmd-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-squid-java-plugin/2.0/sonar-squid-java-plugin-2.0.jar &&\
-  wget http://repository.codehaus.org/org/codehaus/sonar-plugins/java/sonar-surefire-plugin/2.0/sonar-surefire-plugin-2.0.jar
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-checkstyle-plugin/2.0/sonar-checkstyle-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-findbugs-plugin/2.0/sonar-findbugs-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-jacoco-plugin/2.0/sonar-jacoco-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/2.0/sonar-java-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-pmd-plugin/2.0/sonar-pmd-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-squid-java-plugin/2.0/sonar-squid-java-plugin-2.0.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-surefire-plugin/2.0/sonar-surefire-plugin-2.0.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d
