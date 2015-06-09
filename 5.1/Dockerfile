@@ -51,7 +51,7 @@ RUN \
     ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
 
 # Install SonarQube
-ENV SONARQUBE_VERSION 5.1
+ENV SONARQUBE_VERSION 5.1.1
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
@@ -72,9 +72,11 @@ RUN \
 WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
   rm sonar-java-plugin-*.jar &&\
-  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.2/sonar-java-plugin-3.2.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/java/sonar-java-plugin/3.3/sonar-java-plugin-3.3.jar &&\
   rm sonar-scm-svn-plugin-*.jar &&\
   wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-scm-svn-plugin/1.1/sonar-scm-svn-plugin-1.1.jar
+  rm sonar-scm-git-plugin-*.jar &&\
+  wget http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-scm-git-plugin/1.1/sonar-scm-git-plugin-1.1.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d
