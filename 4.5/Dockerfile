@@ -51,7 +51,7 @@ RUN \
     ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
 
 # Install SonarQube
-ENV SONARQUBE_VERSION 4.5.4
+ENV SONARQUBE_VERSION 4.5.5
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
