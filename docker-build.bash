@@ -24,10 +24,10 @@ function build() {
 
 base_dir=$(dirname ${BASH_SOURCE:-$0})
 
-build ${base_dir}/3.6
-build ${base_dir}/3.7
-build ${base_dir}/4.0
-build ${base_dir}/4.1
+#build ${base_dir}/3.6
+#build ${base_dir}/3.7
+#build ${base_dir}/4.0
+#build ${base_dir}/4.1
 build ${base_dir}/4.2
 build ${base_dir}/4.3
 build ${base_dir}/4.4
