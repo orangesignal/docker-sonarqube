@@ -55,7 +55,7 @@ ENV SONARQUBE_VERSION 4.5.6
 ENV SONARQUBE_HOME /opt/sonarqube
 WORKDIR /opt
 RUN \
-  wget http://dist.sonar.codehaus.org/sonarqube-${SONARQUBE_VERSION}.zip &&\
+  wget --no-check-certificate https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip &&\
   unzip sonarqube-${SONARQUBE_VERSION}.zip &&\
   rm    sonarqube-${SONARQUBE_VERSION}.zip &&\
   ln -s sonarqube-${SONARQUBE_VERSION} ${SONARQUBE_HOME} &&\
