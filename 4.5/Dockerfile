@@ -73,7 +73,7 @@ RUN \
 WORKDIR ${SONARQUBE_HOME}/extensions/plugins
 RUN \
   wget --no-check-certificate https://bintray.com/artifact/download/sonarsource/SonarQube/org/sonarsource/sonar-findbugs-plugin/sonar-findbugs-plugin/3.3/sonar-findbugs-plugin-3.3.jar &&\
-  wget --no-check-certificate https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-3.6.jar
+  wget --no-check-certificate https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-3.7.1.jar
 
 # Add a directory to process setup scripts for the container
 RUN mkdir /docker-entrypoint-init.d

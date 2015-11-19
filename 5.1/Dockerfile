@@ -72,7 +72,7 @@ RUN \
 WORKDIR ${SONARQUBE_HOME}/lib/bundled-plugins
 RUN \
   rm sonar-java-plugin-*.jar &&\
-  wget --no-check-certificate https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-3.6.jar &&\
+  wget --no-check-certificate https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-3.7.1.jar &&\
   rm sonar-scm-svn-plugin-*.jar &&\
   wget --no-check-certificate https://bintray.com/artifact/download/sonarsource/SonarQube/org/sonarsource/scm/svn/sonar-scm-svn-plugin/1.2/sonar-scm-svn-plugin-1.2.jar &&\
   rm sonar-scm-git-plugin-*.jar &&\
