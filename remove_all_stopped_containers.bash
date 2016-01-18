@@ -1,2 +1,3 @@
 #!/bin/bash -e
-docker rm $(docker ps -a -q)
+containers_stopped="$(docker ps -a -q -f status=exited)"
+[ -n "$containers_stopped" ] && docker rm $containers_stopped || echo "Containers stopped not found"
